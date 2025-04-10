@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Repository
@@ -18,8 +19,12 @@ public class BookRepository implements BookRepositoryInMemory {
     }
 
     @Override
-    public Book findById(Integer id) {
-        return null;
+    public Optional<Book>  findById(Integer id) {
+        return databaseBooks.stream()
+                .filter(book -> book
+                        .getId()
+                        .equals(id))
+                .findFirst();
     }
 
     @Override
@@ -29,7 +34,11 @@ public class BookRepository implements BookRepositoryInMemory {
 
     @Override
     public List<Book> findByTitle(String title) {
-        return List.of();
+        return databaseBooks.stream()
+                .filter(book -> book.getTitle()
+                        .equals(title))
+                        .toList();
+
     }
 
 
