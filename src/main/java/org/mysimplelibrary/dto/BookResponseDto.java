@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 public class BookResponseDto {
     private String title;
     private String author;
-    private String genre;
+
 }
