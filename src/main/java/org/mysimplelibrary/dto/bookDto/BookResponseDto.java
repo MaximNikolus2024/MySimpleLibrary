@@ -1,4 +1,4 @@
-package org.mysimplelibrary.dto;
+package org.mysimplelibrary.dto.bookDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

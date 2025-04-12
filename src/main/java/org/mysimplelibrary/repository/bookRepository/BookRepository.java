@@ -1,4 +1,4 @@
-package org.mysimplelibrary.repository;
+package org.mysimplelibrary.repository.bookRepository;
 
 import org.mysimplelibrary.entity.Book;
 import org.springframework.stereotype.Repository;
@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
+
 
 @Repository
 public class BookRepository implements BookRepositoryInMemory {
@@ -15,7 +15,7 @@ public class BookRepository implements BookRepositoryInMemory {
 
     @Override
     public List<Book> findAll() {
-        return null;
+        return databaseBooks;
     }
 
     @Override
@@ -29,7 +29,9 @@ public class BookRepository implements BookRepositoryInMemory {
 
     @Override
     public Book save(Book book) {
-        return null;
+        book.setId(++idBookCounter);
+        databaseBooks.add(book);
+        return book;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package org.mysimplelibrary.repository;
+package org.mysimplelibrary.repository.bookRepository;
 
 import org.mysimplelibrary.entity.Book;
 
