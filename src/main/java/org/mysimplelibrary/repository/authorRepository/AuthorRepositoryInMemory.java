@@ -11,5 +11,6 @@ public interface AuthorRepositoryInMemory {
     List<Author> findAllAuthors();
     Optional<Author> findAuthorById(long id);
     List<Author> findByName(String name);
+    void deleteAuthorById(long id);
 
 }

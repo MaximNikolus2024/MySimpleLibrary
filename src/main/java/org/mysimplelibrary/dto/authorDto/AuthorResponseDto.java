@@ -11,4 +11,7 @@ public class AuthorResponseDto {
     private String authorName;
     private String authorBook;
     private Integer id;
+
+    public AuthorResponseDto(String name, Long id) {
+    }
 }

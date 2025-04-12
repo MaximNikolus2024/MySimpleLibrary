@@ -8,11 +8,11 @@ import java.util.Optional;
 public interface BookRepositoryInMemory {
     List<Book> findAll();
 
-   Optional<Book>  findById(Integer id);
+   Optional<Book>  findById(Long id);
 
     Book save(Book book);
 
     List<Book> findByTitle(String title);
 
-    void deleteById(Integer id);
+    void deleteById(Long id);
 }

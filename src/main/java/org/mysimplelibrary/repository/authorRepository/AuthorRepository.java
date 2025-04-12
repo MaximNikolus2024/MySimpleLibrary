@@ -13,11 +13,11 @@ import java.util.stream.Collectors;
 @Repository
 public class AuthorRepository implements AuthorRepositoryInMemory {
     private List<Author> databaseAuthors;
-    private Integer authorIdCounter;
+    private Long authorIdCounter;
 
     public AuthorRepository() {
         this.databaseAuthors = new ArrayList<>();
-        this.authorIdCounter = 0;
+        this.authorIdCounter = 0L;
     }
 
     @Override
@@ -47,6 +47,11 @@ public class AuthorRepository implements AuthorRepositoryInMemory {
                         .getName()
                         .equals(name))
                 .toList();
+    }
+
+    @Override
+    public void deleteAuthorById(long id) {
+        databaseAuthors.remove(findAuthorById(id));
     }
 
 }

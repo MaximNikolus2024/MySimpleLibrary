@@ -24,7 +24,10 @@ public class AuthorService {
     public List<Author> getAllAuthors() {
         return authorRepository.findAllAuthors();
     }
-    public void deleteAuthor(Integer id) {
+    public List<Author> findAuthorsByName(String name) {
+        return authorRepository.findByName(name);
+    }
+    public void deleteAuthor(Long id) {
        authorRepository.findAuthorById(id).ifPresent(author -> {
            authorRepository.findAllAuthors().remove(author);
        });

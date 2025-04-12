@@ -19,13 +19,15 @@ public class BookRepository implements BookRepositoryInMemory {
     }
 
     @Override
-    public Optional<Book> findById(Integer id) {
+    public Optional<Book> findById(Long id) {
         return databaseBooks.stream()
                 .filter(book -> book
                         .getId()
                         .equals(id))
                 .findFirst();
     }
+
+
 
     @Override
     public Book save(Book book) {
@@ -43,9 +45,11 @@ public class BookRepository implements BookRepositoryInMemory {
 
     }
 
-
     @Override
-    public void deleteById(Integer id) {
+    public void deleteById(Long id) {
         databaseBooks.removeIf(book -> book.getId().equals(id));
     }
+
+
+
 }
