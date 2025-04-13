@@ -1,4 +1,4 @@
-package org.mysimplelibrary.entity;
+package org.mysimplelibrary.dto.bookDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,9 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Book {
+public class BookRequest {
     private String title;
-    private  String bookDescription;
+    private String bookDescription;
     private Integer id;
-    Author author;
 }

@@ -1,9 +1,7 @@
 package org.mysimplelibrary.service;
 
-
 import org.mysimplelibrary.entity.Book;
-import org.mysimplelibrary.repository.authorRepository.AuthorRepositoryInMemory;
-import org.mysimplelibrary.repository.bookRepository.BookRepositoryInMemory;
+import org.mysimplelibrary.repository.bookRepository.BookRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,23 +9,24 @@ import java.util.Optional;
 
 @Service
 public class BookService {
-private AuthorRepositoryInMemory authorRepository;
-private BookRepositoryInMemory bookRepository;
+    private BookRepository repository;
 
-    public BookService(AuthorRepositoryInMemory authorRepository, BookRepositoryInMemory bookRepository) {
-        this.authorRepository = authorRepository;
-        this.bookRepository = bookRepository;
+    public BookService(BookRepository bookRepository) {
+        this.repository = bookRepository;
     }
-    public Book addBook(Book book) {
-        return bookRepository.save(book);
+    public List<Book> findAll() {
+        return repository.findAll();
     }
-    public Optional<Book> getBookById(Long id) {
-        return bookRepository.findById(id);
+    public Optional<Book> findById(Integer id) {
+        return repository.findById(id);
     }
-    public List<Book> getAllBooks() {
-        return bookRepository.findAll();
+    public Book save(Book book) {
+        return repository.save(book);
     }
-    public void deleteBookById(Long id) {
-        bookRepository.deleteById(id);
+    public List<Book> findBookByName(String title) {
+        return repository.findByTitle(title);
     }
+  public void delete(Book book) {
+        repository.delete(book);
+  }
 }

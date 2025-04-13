@@ -1,36 +1,35 @@
 package org.mysimplelibrary.service;
 
-
 import org.mysimplelibrary.entity.Author;
 import org.mysimplelibrary.repository.authorRepository.AuthorRepository;
-import org.mysimplelibrary.repository.authorRepository.AuthorRepositoryInMemory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
 @Service
 public class AuthorService {
-    private AuthorRepositoryInMemory authorRepository;
+    AuthorRepository repository;
 
-    public AuthorService(AuthorRepositoryInMemory authorRepository) {
-        this.authorRepository = authorRepository;
+    public AuthorService(AuthorRepository repository) {
+        this.repository = repository;
     }
     public Author addAuthor(Author author) {
-        return authorRepository.addAuthor(author);
+        return repository.save(author);
     }
-    public Optional<Author> getAuthorById(long id) {
-        return authorRepository.findAuthorById(id);
-    }
-    public List<Author> getAllAuthors() {
-        return authorRepository.findAllAuthors();
-    }
-    public List<Author> findAuthorsByName(String name) {
-        return authorRepository.findByName(name);
-    }
-    public void deleteAuthor(Long id) {
-       authorRepository.findAuthorById(id).ifPresent(author -> {
-           authorRepository.findAllAuthors().remove(author);
-       });
-    }
-
+public Optional<Author> findAuthorById(Integer authorId) {
+        return repository.findById(authorId);
+}
+public List<Author> findAllAuthors() {
+        return repository.findAll();
+}
+public List<Author> findAuthorsByName(String name) {
+        return repository.findByName(name);
+}
+public void deleteAuthorById(Integer id) {
+      repository.findById(id)
+              .ifPresent(author -> repository
+                      .findAll()
+                      .remove(author));
+}
 }
