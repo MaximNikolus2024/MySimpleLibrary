@@ -35,6 +35,9 @@ public class AuthorController {
     public void deleteAuthor(@PathVariable Integer id) {
         authorService.deleteAuthorById(id);
     }
-
+    @GetMapping("/search")
+    public List<Author> searchAuthor(@RequestParam String name) {
+       return authorService.findAuthorsByName(name);
+    }
 
 }
