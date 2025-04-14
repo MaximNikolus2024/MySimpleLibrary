@@ -41,6 +41,4 @@ public class BookController {
    public List<Book> searchBooksByTitle(String title) {
        return bookService.findBookByName(title);
    }
-   @GetMapping("/search/author")
-    public List<Author> searchAuthorsByTitle(String title) {}
-}
+
