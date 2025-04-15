@@ -1,5 +1,7 @@
 package org.mysimplelibrary.repository.bookRepository;
 
+import org.mysimplelibrary.dto.authorDto.AuthorResponse;
+import org.mysimplelibrary.dto.bookDto.BookResponse;
 import org.mysimplelibrary.entity.Author;
 import org.mysimplelibrary.entity.Book;
 
@@ -15,7 +17,9 @@ public interface BookRepository {
 
     List<Book> findByTitle(String title);
 
-    void delete(Book book);
-    List<Book> findByAuthor(Author author);
+
+
+    void delete(Integer id);
+
 
 }

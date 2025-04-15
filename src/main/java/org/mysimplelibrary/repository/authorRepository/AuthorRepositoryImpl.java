@@ -1,6 +1,7 @@
 package org.mysimplelibrary.repository.authorRepository;
 
 import org.mysimplelibrary.entity.Author;
+import org.mysimplelibrary.entity.Book;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -51,7 +52,8 @@ public class AuthorRepositoryImpl implements AuthorRepository {
     }
 
     @Override
-    public void delete(Author author) {
-        databaseAuthors.remove(author);
+    public void delete(Integer id) {
+        databaseAuthors.remove(id);
     }
+
 }

@@ -10,5 +10,5 @@ public interface AuthorRepository {
     Optional<Author> findById(Integer id);
     List<Author> findByName(String name);
     Author save(Author author);
-    void delete(Author author);
+    void delete(Integer id);
 }

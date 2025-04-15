@@ -1,5 +1,7 @@
 package org.mysimplelibrary.repository.bookRepository;
 
+import org.mysimplelibrary.dto.authorDto.AuthorResponse;
+import org.mysimplelibrary.dto.bookDto.BookResponse;
 import org.mysimplelibrary.entity.Author;
 import org.mysimplelibrary.entity.Book;
 import org.springframework.stereotype.Repository;
@@ -50,17 +52,10 @@ public class BookRepositoryImpl implements BookRepository {
     }
 
     @Override
-    public void delete(Book book) {
-        databaseBooks.remove(book);
-    }
-
-
-    @Override
-    public List<Book> findByAuthor(Author author) {
-        return databaseBooks.stream()
-                .filter(book -> book
-                        .getAuthor()
-                        .equals(author))
-                .toList();
+    public void delete(Integer id) {
+        databaseBooks.remove(id);
     }
 }
+
+
+
