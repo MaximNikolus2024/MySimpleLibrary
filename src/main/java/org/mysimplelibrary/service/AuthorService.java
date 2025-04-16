@@ -1,35 +1,33 @@
 package org.mysimplelibrary.service;
 
+import lombok.AllArgsConstructor;
 import org.mysimplelibrary.entity.Author;
-import org.mysimplelibrary.repository.authorRepository.AuthorRepository;
+import org.mysimplelibrary.repository.authorRepository.AuthorRepositoryWithJpa;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class AuthorService {
-    AuthorRepository repository;
-
-    public AuthorService(AuthorRepository repository) {
-        this.repository = repository;
+    public AuthorRepositoryWithJpa repository;
+    public List<Author> findAll() {
+        return repository.findAll();
+    }
+    public Optional<Author> findById(Long id) {
+        return repository.findById(id);
     }
     public Author addAuthor(Author author) {
         return repository.save(author);
     }
-public Optional<Author> findAuthorById(Integer authorId) {
-        return repository.findById(authorId);
-}
-public List<Author> findAllAuthors() {
-        return repository.findAll();
-}
-public List<Author> findAuthorsByName(String name) {
+    public Author updateAuthor(Author author) {
+        return repository.save(author);
+    }
+    public List<Author> findByName(String name) {
         return repository.findByName(name);
-}
-public void deleteAuthorById(Integer id) {
-      repository.findById(id)
-              .ifPresent(author -> repository
-                      .findAll()
-                      .remove(author));
-}
+    }
+    public void deleteAuthor(Long id) {
+        repository.deleteAuthorById(id);
+    }
 }

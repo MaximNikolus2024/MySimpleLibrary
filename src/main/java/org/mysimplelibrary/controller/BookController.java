@@ -1,5 +1,6 @@
 package org.mysimplelibrary.controller;
 
+import org.mysimplelibrary.dto.authorDto.AuthorResponse;
 import org.mysimplelibrary.entity.Author;
 import org.mysimplelibrary.entity.Book;
 import org.mysimplelibrary.service.BookService;
@@ -16,36 +17,30 @@ public class BookController {
     public BookController(BookService bookService) {
         this.bookService = bookService;
     }
-
-    @GetMapping
-    public List<Book> getAllBooks() {
+@GetMapping
+    public List<Book> findAll(Book book) {
         return bookService.findAll();
     }
-
-    @GetMapping("/id")
-    public Optional<Book> getBookById(@PathVariable Integer id) {
+@GetMapping("/{id}")
+    public Optional<Book> findById( @PathVariable Long id) {
         return bookService.findById(id);
     }
-
-    @PostMapping
+@PostMapping
     public Book createBook(@RequestBody Book book) {
-        return bookService.save(book);
+        return bookService.addBook(book);
     }
-
-    @PutMapping("/{id}")
-    public Book updateBook(@PathVariable Integer id, @RequestBody Book book) {
-        book.setId(id);
-        return bookService.save(book);
+@PutMapping("/{id}")
+    public Book updateBook( @PathVariable Long id, @RequestBody Book book) {
+        return bookService.updateBook(book);
     }
-
-    @DeleteMapping
-    public void deleteBook(@PathVariable Book book) {
-        bookService.delete(book);
-    }
-
     @GetMapping("/search")
-    public List<Book> searchBooksByTitle(String title) {
-        return bookService.findBookByName(title);
+    public List<Book> searchBook(@RequestParam String title) {
+        return bookService.findByTitle(title);
     }
+    @DeleteMapping("/{id}")
+    public void deleteBook(@PathVariable Long id) {
+        bookService.deleteBookById(id);
+    }
+
 }
 
