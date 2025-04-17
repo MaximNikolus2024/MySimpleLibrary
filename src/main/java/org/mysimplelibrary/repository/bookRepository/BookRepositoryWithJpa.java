@@ -8,7 +8,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface BookRepositoryWithJpa extends JpaRepository<Book, Long> {
-    List<Book> findBookByAuthor( AuthorResponse authorResponse );
+    List<Book> findBookByAuthor(AuthorResponse authorResponse);
+
     List<Book> findBookByTitle(String title);
+
     void deleteBookById(Long id);
 }

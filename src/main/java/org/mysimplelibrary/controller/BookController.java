@@ -17,30 +17,39 @@ public class BookController {
     public BookController(BookService bookService) {
         this.bookService = bookService;
     }
-@GetMapping
+
+    @GetMapping
     public List<Book> findAll(Book book) {
         return bookService.findAll();
     }
-@GetMapping("/{id}")
-    public Optional<Book> findById( @PathVariable Long id) {
+
+    @GetMapping("/{id}")
+    public Optional<Book> findById(@PathVariable Long id) {
         return bookService.findById(id);
     }
-@PostMapping
+
+    @PostMapping
     public Book createBook(@RequestBody Book book) {
         return bookService.addBook(book);
     }
-@PutMapping("/{id}")
-    public Book updateBook( @PathVariable Long id, @RequestBody Book book) {
+
+    @PutMapping("/{id}")
+    public Book updateBook(@PathVariable Long id, @RequestBody Book book) {
         return bookService.updateBook(book);
     }
+
     @GetMapping("/search")
     public List<Book> searchBook(@RequestParam String title) {
         return bookService.findByTitle(title);
     }
+
     @DeleteMapping("/{id}")
     public void deleteBook(@PathVariable Long id) {
         bookService.deleteBookById(id);
     }
-
+@DeleteMapping("/search/authors")
+    public List<Book> getBookByAuthor(@RequestBody AuthorResponse authorResponse) {
+        return bookService.findByAuthor(authorResponse);
+    }
 }
 
