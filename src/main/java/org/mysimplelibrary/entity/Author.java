@@ -13,8 +13,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Author {
-    private String name;
     @Id
+    private String name;
+
     private Long id;
     private String email;
 }

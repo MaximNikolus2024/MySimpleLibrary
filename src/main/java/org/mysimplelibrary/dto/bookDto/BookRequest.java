@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class BookRequest {
     private String title;
-    private String bookDescription;
+    private String authorName;
     private Integer id;
 }
