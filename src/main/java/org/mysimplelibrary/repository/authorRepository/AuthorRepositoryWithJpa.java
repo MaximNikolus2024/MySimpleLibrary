@@ -10,4 +10,6 @@ public interface AuthorRepositoryWithJpa extends JpaRepository<Author, Long> {
     List<Author> findByName(String name);
 
     void deleteAuthorById(Long id);
+
+    Optional<Author> findByAuthorByEmail(String email);
 }

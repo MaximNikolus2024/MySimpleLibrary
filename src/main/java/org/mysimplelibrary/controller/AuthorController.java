@@ -1,5 +1,8 @@
 package org.mysimplelibrary.controller;
 
+import jakarta.validation.Valid;
+import org.mysimplelibrary.dto.authorDto.AuthorRequest;
+import org.mysimplelibrary.dto.authorDto.AuthorResponse;
 import org.mysimplelibrary.entity.Author;
 import org.mysimplelibrary.service.AuthorService;
 import org.springframework.web.bind.annotation.*;
@@ -23,13 +26,13 @@ public class AuthorController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Author> findById(@PathVariable Long id) {
+    public Author findById(@PathVariable Long id) {
         return authorService.findById(id);
     }
 
     @PostMapping
-    public Author createAuthor(@RequestBody Author author) {
-        return authorService.addAuthor(author);
+    public AuthorResponse createAuthor(@Valid @RequestBody AuthorRequest request) {
+        return authorService.addAuthor(request);
     }
 
     @PutMapping("/{id}")

@@ -11,6 +11,6 @@ import org.mysimplelibrary.dto.authorDto.AuthorResponse;
 public class BookResponse {
     private String title;
     private String bookDescription;
-    private Integer id;
+    private Long id;
     AuthorResponse authorResponse;
 }

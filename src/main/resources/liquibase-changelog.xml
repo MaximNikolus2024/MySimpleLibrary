@@ -2,20 +2,7 @@
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.29.xsd "
-                   objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS ">
-    <changeSet id="create.table.books" author="Maxim Nikolus">
-        <createTable tableName="books">
-            <column name="id" type="LONG" autoIncrement="true">
-                <constraints primaryKey="true"/>
-            </column>
-            <column name="book_title" type="varchar (255)"/>
-            <column name="book_description" type="varchar (255)"/>
-            <column name="author_id" type="LONG"/>
-        </createTable>
-        <addForeignKeyConstraint baseTableName="books" baseColumnNames="author_name" constraintName="fk_books"
-                                 referencedTableName="authors"
-                                 referencedColumnNames="name"/>
-    </changeSet>
+                   objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
     <changeSet id="create.table.authors" author="Maxim Nikolus">
         <createTable tableName="authors">
             <column name="id" type="LONG" autoIncrement="true">
@@ -25,18 +12,33 @@
             <column name="email" type="varchar (255)"/>
         </createTable>
     </changeSet>
-    <changeSet id="insert.default.data.books" author="Maxim Nikolus">
-        <insert tableName="books">
-            <column name="book_title" value="Harry Potter and half-blood prince"></column>
-            <column name="book_description" value="Harry Potter serie"/>
-            <column name="author_id" value="1"/>
-        </insert>
+    <changeSet id="create.table.books" author="Maxim Nikolus">
+        <createTable tableName="books">
+            <column name="id" type="LONG" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="book_title" type="varchar (255)"/>
+            <column name="book_description" type="varchar (255)"/>
+            <column name="author_id" type="lONG"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="books" baseColumnNames="author_id" constraintName="fk_books"
+                                 referencedTableName="authors"
+                                 referencedColumnNames="id"/>
     </changeSet>
     <changeSet id="insert.default.data.authors" author="Maxim Nikolus">
         <insert tableName="authors">
             <column name="name" value="Joan Rouling"></column>
             <column name="email" value="author1@mail.com"/>
 
+
         </insert>
     </changeSet>
+    <changeSet id="insert.default.data.books" author="Maxim Nikolus">
+        <insert tableName="books">
+            <column name="book_title" value="Harry Potter and half-blood prince"></column>
+            <column name="book_description" value="Harry Potter serie"/>
+
+        </insert>
+    </changeSet>
+
 </databaseChangeLog>

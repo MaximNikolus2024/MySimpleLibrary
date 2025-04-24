@@ -1,6 +1,8 @@
 package org.mysimplelibrary.controller;
 
 import org.mysimplelibrary.dto.authorDto.AuthorResponse;
+import org.mysimplelibrary.dto.bookDto.BookRequest;
+import org.mysimplelibrary.dto.bookDto.BookResponse;
 import org.mysimplelibrary.entity.Author;
 import org.mysimplelibrary.entity.Book;
 import org.mysimplelibrary.service.BookService;
@@ -24,13 +26,13 @@ public class BookController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Book> findById(@PathVariable Long id) {
+    public Book findById (@PathVariable Long id) {
         return bookService.findById(id);
     }
 
     @PostMapping
-    public Book createBook(@RequestBody Book book) {
-        return bookService.addBook(book);
+    public BookResponse createBook(@RequestBody BookRequest request) {
+        return bookService.addBook(request);
     }
 
     @PutMapping("/{id}")
@@ -47,9 +49,6 @@ public class BookController {
     public void deleteBook(@PathVariable Long id) {
         bookService.deleteBookById(id);
     }
-@DeleteMapping("/search/authors")
-    public List<Book> getBookByAuthor(@RequestBody AuthorResponse authorResponse) {
-        return bookService.findByAuthor(authorResponse);
-    }
+
 }
 
